@@ -34,6 +34,10 @@ namespace _31_08_2020_ma___4_09_2020_vr_projectweek_yannick
         public int AncienniteitJaren()
         {
             int AncienniteidJaren = DatumIntreding.Year - DateTime.Now.Year;
+            if (DateTime.Now.Month < DatumIntreding.Month )
+            {AncienniteidJaren -= 1;}
+            
+            
             return AncienniteidJaren;
         }
         public double StartloonNaUren()
