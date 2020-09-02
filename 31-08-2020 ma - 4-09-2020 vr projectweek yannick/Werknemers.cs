@@ -113,6 +113,7 @@ namespace _31_08_2020_ma___4_09_2020_vr_projectweek_yannick
                 writer.WriteLine(devider);
                 writer.WriteLine($"NAAM                     : {Naam}");
                 writer.WriteLine($"RIJKSREGISTERNUMMER      : {Rijksregisternummer}");
+                writer.WriteLine($"IBAN-NUMMER              : {Bankrekening}");
                 writer.WriteLine($"GESLACHT                 : {(Geslacht ? "MAN" : "VROUW")}");
                 writer.WriteLine($"GEBOORTEDATUM            : {GeboorteDatum.ToShortDateString()}");
                 writer.WriteLine($"DATUM INDIENSTTREDING    : {DatumIntreding.ToShortDateString()}");
