@@ -25,5 +25,9 @@ namespace _31_08_2020_ma___4_09_2020_vr_projectweek_yannick
         {
             return Functie;
         }
+        public override double Recap()
+        {
+            return base.Recap() + 50+19.5;
+        }
     }
 }

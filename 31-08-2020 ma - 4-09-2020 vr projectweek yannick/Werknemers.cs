@@ -96,7 +96,7 @@ namespace _31_08_2020_ma___4_09_2020_vr_projectweek_yannick
         {
             return "";
         }
-        public void Loonstroken(string Folder)
+        public void Loonstroken(string Folder, string devider)
         {
             double startloon = Math.Round(StartloonNaUren(), 2);
             double ancienniteit = Math.Round(AncienniteitVerschil(), 2);            
@@ -104,48 +104,52 @@ namespace _31_08_2020_ma___4_09_2020_vr_projectweek_yannick
             double loonMinSocialezekerheid = Math.Round(SocialeZekerheid(), 2);
             double bedragBedrijfsvoorheffing = Math.Round(BedrijfsvoorheffingVerschil(), 2);
             double loonMinBedrijfsvoorheffing = Math.Round(Bedrijfsvoorheffing(), 2);
-            double nettoLoon = Math.Round(Extras(), 2);
-            string devider = "----------------------------------------------";
-            string bestandsNaam = Folder + $"LOONBRIEF  {Naam} {Rijksregisternummer} {DateTime.Now.ToString("MM yyyy")}.txt";
-            using (StreamWriter writer = new StreamWriter(bestandsNaam))
+            double nettoLoon = Math.Round(Extras(), 2);           
+            string bestandnaamLoonstrook = $"LOONBRIEF  {Naam} {Rijksregisternummer} {DateTime.Now.ToString("MM-yyyy")}.txt";            
+            using (StreamWriter writer = new StreamWriter(Folder+bestandnaamLoonstrook))
             {
                 writer.WriteLine(devider);
                 writer.WriteLine($"LOONBRIEF {DateTime.Now.ToString("MMMM yyyy").ToUpper()}");
                 writer.WriteLine(devider);
-                writer.WriteLine($"NAAM                     :{Naam}");
-                writer.WriteLine($"RIJKSREGISTERNUMMER      :{Rijksregisternummer}");
-                writer.WriteLine($"GESLACHT                 :{Geslacht}");
-                writer.WriteLine($"GEBOORTEDATUM            :{GeboorteDatum.ToShortDateString()}");
-                writer.WriteLine($"DATUM INDIENSTTREDING    :{DatumIntreding.ToShortDateString()}");
-                writer.WriteLine($"FUNCTIE                  :{Functie.ToUpper()}");
-                writer.WriteLine($"AANTAL GEPRESTEERDE UREN :{Uren}/38");
+                writer.WriteLine($"NAAM                     : {Naam}");
+                writer.WriteLine($"RIJKSREGISTERNUMMER      : {Rijksregisternummer}");
+                writer.WriteLine($"GESLACHT                 : {(Geslacht ? "MAN" : "VROUW")}");
+                writer.WriteLine($"GEBOORTEDATUM            : {GeboorteDatum.ToShortDateString()}");
+                writer.WriteLine($"DATUM INDIENSTTREDING    : {DatumIntreding.ToShortDateString()}");
+                writer.WriteLine($"FUNCTIE                  : {Functie.ToUpper()}");
+                writer.WriteLine($"AANTAL GEPRESTEERDE UREN : {Uren}/38");
                 if (BedrijfswagenString() != "")
-                { writer.WriteLine($"BEDRIJFSWAGEN            :{(Bedrijfswagen ? "Ja" : "Nee")}"); }
+                { writer.WriteLine($"BEDRIJFSWAGEN            : {(Bedrijfswagen ? "Ja" : "Nee")}"); }
                 writer.WriteLine(devider);
-                writer.WriteLine($"STARTLOON                :   €{PrintValue(startloon)}");
-                writer.WriteLine($"ANCIËNNITEIT             : + €{PrintValue(ancienniteit)}");
-                writer.WriteLine($"                             €{PrintValue(LoonPlusAncienniteit)}");
-                writer.WriteLine($"SOCIALE ZEKERHEID        : - €{PrintValue(BijdragenSocialeZekerheid)}");
-                writer.WriteLine($"                             €{PrintValue(loonMinSocialezekerheid)}");
-                writer.WriteLine($"BEDRIJFSVOORHEFFING      : - €{PrintValue(bedragBedrijfsvoorheffing)}");
-                writer.WriteLine($"                             €{PrintValue(loonMinBedrijfsvoorheffing)}");
+                writer.WriteLine($"STARTLOON                :   €{CijferPrinterRechts(startloon)}");
+                writer.WriteLine($"ANCIËNNITEIT             : + €{CijferPrinterRechts(ancienniteit)}");
+                writer.WriteLine($"                             €{CijferPrinterRechts(LoonPlusAncienniteit)}");
+                writer.WriteLine($"SOCIALE ZEKERHEID        : - €{CijferPrinterRechts(BijdragenSocialeZekerheid)}");
+                writer.WriteLine($"                             €{CijferPrinterRechts(loonMinSocialezekerheid)}");
+                writer.WriteLine($"BEDRIJFSVOORHEFFING      : - €{CijferPrinterRechts(bedragBedrijfsvoorheffing)}");
+                writer.WriteLine($"                             €{CijferPrinterRechts(loonMinBedrijfsvoorheffing)}");
                 if (Support() != "")
                 { 
-                    writer.WriteLine($"BONUS THUIS WERKEN       : + €{PrintValue(50.00)}");
+                    writer.WriteLine($"BONUS THUIS WERKEN       : + €{CijferPrinterRechts(50.00)}");
                     if (CostumerSupport() != "")
-                    { writer.WriteLine($"TERUGBETAALING OPLEIDING : + €{PrintValue(19.50)}"); }                   
+                    { writer.WriteLine($"TERUGBETAALING OPLEIDING : + €{CijferPrinterRechts(19.50)}"); }                   
                 }
                 
-                writer.WriteLine($"NETTOLOON                :   €{PrintValue(nettoLoon)}");
+                writer.WriteLine($"NETTOLOON                :   €{CijferPrinterRechts(nettoLoon)}");
                 writer.WriteLine(devider);
             }
 
         }
-        public string PrintValue(double getal)
+        public string CijferPrinterRechts(double getal)
         {
-            string getalWeergave = getal.ToString("0,00");
+            string getalWeergave = getal.ToString("0.00");
             string gelijkstellenGettallen = string.Format("{0,10}", getalWeergave);
             return gelijkstellenGettallen;
+        }
+        public virtual double Recap()
+        {
+            double recap = Ancienniteit();
+            return recap;
         }
     }
 }
