@@ -26,7 +26,7 @@ namespace _31_08_2020_ma___4_09_2020_vr_projectweek_yannick
 
             for (int i = 0; i < AantalJarenDienst; i++)
             {
-                Loon *= 1.1;
+                Loon *= 1.01;
             }
             Loon = Loon + StartloonPercent();
             return Loon;
@@ -44,7 +44,6 @@ namespace _31_08_2020_ma___4_09_2020_vr_projectweek_yannick
         {
             return Functie;
         }
-
         public override double Recap()
         {
             return base.Recap()+50;

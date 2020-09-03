@@ -38,7 +38,7 @@ namespace _31_08_2020_ma___4_09_2020_vr_projectweek_yannick
         }
         public int AncienniteitJaren()
         {
-            int AncienniteidJaren = DatumIntreding.Year - DateTime.Now.Year;
+            int AncienniteidJaren = DateTime.Now.Year -DatumIntreding.Year;
             if (DateTime.Now.Month < DatumIntreding.Month )
             {AncienniteidJaren -= 1;}
             return AncienniteidJaren;
@@ -55,7 +55,7 @@ namespace _31_08_2020_ma___4_09_2020_vr_projectweek_yannick
             
             for (int i = 0; i < AantalJarenDienst; i++)
             {
-                Loon *= 1.1;
+                Loon *= 1.01;
             }           
             return Loon;
         }
@@ -151,6 +151,11 @@ namespace _31_08_2020_ma___4_09_2020_vr_projectweek_yannick
         {
             double recap = Ancienniteit();
             return recap;
+        }
+
+        public override string ToString()
+        {
+            return Naam;
         }
     }
 }
