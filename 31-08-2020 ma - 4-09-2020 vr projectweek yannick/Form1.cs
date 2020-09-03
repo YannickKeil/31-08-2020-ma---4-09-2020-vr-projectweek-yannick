@@ -22,7 +22,7 @@ namespace _31_08_2020_ma___4_09_2020_vr_projectweek_yannick
         private void Form1_Load(object sender, EventArgs e)
         {
 
-            Programmeur newWerknemer = new Programmeur("PIETER JANSSENS", true, new DateTime(1991, 01, 12), "910112-189-31", new DateTime(2018, 07, 18), "BE## #### #### ####", 38, true);
+            Programmeur newWerknemer = new Programmeur("PIETER JANSSENS", true, new DateTime(1991, 01, 12), "91,01,12-189,31", new DateTime(2018, 07, 18), "BE## #### #### ####", 38, true);
             WerknemersBedrijf.Add(newWerknemer);
             LaadWerknemers();
         }
@@ -82,18 +82,30 @@ namespace _31_08_2020_ma___4_09_2020_vr_projectweek_yannick
             {
                 if (werknemerinfo.functie == "PROGRAMMEUR")
                 {
-                    Programmeur WerknermerToevoegen = new Programmeur(werknemerinfo.naam, werknemerinfo.geslacht, werknemerinfo.geboortedatum, werknemerinfo.rijksregisternummer, werknemerinfo.datumIntreding, werknemerinfo.rekeningnummer, werknemerinfo.uren,werknemerinfo.bedrijfswagen);
+                    Programmeur WerknermerToevoegen = new Programmeur(werknemerinfo.naam, werknemerinfo.geslacht, werknemerinfo.geboortedatum, werknemerinfo.rijksregisternummer, werknemerinfo.datumIntreding, werknemerinfo.rekeningnummer, werknemerinfo.uren, werknemerinfo.bedrijfswagen, startloon: werknemerinfo.startLoon);
+                    WerknemersBedrijf.Add(WerknermerToevoegen);
                 }
                 else if (werknemerinfo.functie == "IT SUPPORT")
                 {
+                    IT_Support WerknermerToevoegen = new IT_Support(werknemerinfo.naam, werknemerinfo.geslacht, werknemerinfo.geboortedatum, werknemerinfo.rijksregisternummer, werknemerinfo.datumIntreding, werknemerinfo.rekeningnummer, startloon: werknemerinfo.startLoon);
+                    WerknemersBedrijf.Add(WerknermerToevoegen);
                 }
                 else if (werknemerinfo.functie == "COSTUMER SUPPORT")
-                { 
+                {
+                    Costumer_Support WerknermerToevoegen = new Costumer_Support(werknemerinfo.naam, werknemerinfo.geslacht, werknemerinfo.geboortedatum, werknemerinfo.rijksregisternummer, werknemerinfo.datumIntreding, werknemerinfo.rekeningnummer, werknemerinfo.uren , startloon: werknemerinfo.startLoon);
+                    WerknemersBedrijf.Add(WerknermerToevoegen);
                 }
                 else
                 {
+                    Werknemers WerknermerToevoegen = new Werknemers(werknemerinfo.naam, werknemerinfo.geslacht, werknemerinfo.geboortedatum, werknemerinfo.rijksregisternummer, werknemerinfo.datumIntreding, werknemerinfo.rekeningnummer,werknemerinfo.functie.ToUpper(), werknemerinfo.uren, startloon: werknemerinfo.startLoon);
+                    WerknemersBedrijf.Add(WerknermerToevoegen);
                 }
             }
+            LaadWerknemers();
+        }
+
+        private void lbWerknemers_SelectedIndexChanged(object sender, EventArgs e)
+        {
             LaadWerknemers();
         }
     }

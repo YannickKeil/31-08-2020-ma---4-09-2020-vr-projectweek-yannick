@@ -45,7 +45,8 @@ namespace _31_08_2020_ma___4_09_2020_vr_projectweek_yannick
         }
         public double StartloonNaUren()
         {
-            double StartloonNaUren = (Uren / 38) * Startloon;
+
+            double StartloonNaUren = (Convert.ToDouble(Uren) / 38) * Startloon;
             return StartloonNaUren;
         }
         public virtual double Ancienniteit()

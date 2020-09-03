@@ -25,23 +25,34 @@ namespace _31_08_2020_ma___4_09_2020_vr_projectweek_yannick
         public string rekeningnummer;
         public int uren;
         public bool bedrijfswagen;
+        public double startLoon;
         private void btnAddEdit_Click(object sender, EventArgs e)
         {
             if (tbNaam.Text == "")
             {
                 epText.SetError(tbNaam, "Geen tekst ingevuld!");
             }
-            if (mtbRijksregister.Text == "")
+            else if (!mtbRijksregister.MaskCompleted)
             {
                 epText.SetError(mtbRijksregister, "Geen tekst ingevuld!");
             }
-            if (mtbRekeningNummer.Text == "")
+            else if (!mtbRekeningNummer.MaskCompleted)
             {
                 epText.SetError(mtbRekeningNummer, "Geen tekst ingevuld!");
             }
-            if (DateTime.Now.Year - dtpGeboorteDatum.Value.Year >= 18 && DateTime.Now.Month > dtpGeboorteDatum.Value.Month)
+            else if (DateTime.Now.Year - dtpGeboorteDatum.Value.Year < 18 && DateTime.Now.Month > dtpGeboorteDatum.Value.Month)
             {
-                epText.SetError(mtbRekeningNummer, "geboortedatum foutief ingevult");
+                epText.SetError(dtpGeboorteDatum, "geboortedatum foutief ingevult");
+            }
+            else if (!mtbRijksregister.Text.Contains($"{dtpGeboorteDatum.Value:yy,MM,dd}") && !mtbRijksregister.Text.Contains($"{dtpGeboorteDatum.Value:yy},00,00") && !mtbRijksregister.Text.Contains($"{dtpGeboorteDatum.Value:yy,MM},00") && !mtbRijksregister.Text.Contains($"{dtpGeboorteDatum.Value:yy,00,dd}"))
+            { 
+                epText.SetError(dtpGeboorteDatum, "geboortedatum of rijsregister foutief ingevult");
+                epText.SetError(mtbRijksregister, "geboortedatum of rijsregister foutief ingevult");
+            }
+            else if (dtpDatumIntreding.Value.Year - dtpGeboorteDatum.Value.Year < 18 && dtpDatumIntreding.Value.Month < dtpGeboorteDatum.Value.Month)
+            {
+                epText.SetError(dtpGeboorteDatum, "geboortedatum of datum van ndiensttreding  is foutief ingevult");
+                epText.SetError(dtpDatumIntreding, "geboortedatum of datum van ndiensttreding  is foutief ingevult");
             }
             else 
             {
@@ -60,6 +71,7 @@ namespace _31_08_2020_ma___4_09_2020_vr_projectweek_yannick
                 { bedrijfswagen = true; }
                 else 
                 { bedrijfswagen = false; }
+                startLoon = Convert.ToDouble(nudLoon.Value);
                 this.DialogResult = DialogResult.OK;
                 epText.Clear();
             }
@@ -87,7 +99,7 @@ namespace _31_08_2020_ma___4_09_2020_vr_projectweek_yannick
 
         private void mtbRijksregister_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
         {
-            if (mtbRijksregister.Text == "")
+            if (!mtbRijksregister.MaskCompleted)
             {
                 epText.SetError(mtbRijksregister, "Geen tekst ingevuld!");
             }
@@ -99,7 +111,7 @@ namespace _31_08_2020_ma___4_09_2020_vr_projectweek_yannick
 
         private void mtbRekeningNummer_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
         {
-            if (mtbRekeningNummer.Text == "")
+            if (!mtbRekeningNummer.MaskCompleted)
             {
                 epText.SetError(mtbRekeningNummer, "Geen tekst ingevuld!");
             }
@@ -111,9 +123,14 @@ namespace _31_08_2020_ma___4_09_2020_vr_projectweek_yannick
 
         private void dtpGeboorteDatum_ValueChanged(object sender, EventArgs e)
         {
-            if (DateTime.Now.Year - dtpGeboorteDatum.Value.Year >= 18 && DateTime.Now.Month > dtpGeboorteDatum.Value.Month)
+            if (DateTime.Now.Year - dtpGeboorteDatum.Value.Year <= 18 && DateTime.Now.Month - dtpGeboorteDatum.Value.Month > 0)
             {
-                epText.SetError(mtbRekeningNummer, "geboortedatum foutief ingevult ");
+                epText.SetError(dtpGeboorteDatum, "geboortedatum foutief ingevult ");
+            }
+            else if (dtpDatumIntreding.Value.Year - dtpGeboorteDatum.Value.Year <= 18 && dtpDatumIntreding.Value.Month < dtpGeboorteDatum.Value.Month)
+            {
+                epText.SetError(dtpGeboorteDatum, "geboortedatum of datum van ndiensttreding  is foutief ingevult");
+                epText.SetError(dtpDatumIntreding, "geboortedatum of datum van ndiensttreding  is foutief ingevult");
             }
             else
             {
@@ -126,10 +143,33 @@ namespace _31_08_2020_ma___4_09_2020_vr_projectweek_yannick
             if (cbFunctie.Text == "PROGRAMMEUR")
             {
                 gbBedrijfswagen.Visible = true;
+                nudLoon.Value = Convert.ToDecimal(2200.00);
+                nudUren.Value = 38;
             }
+            else if(cbFunctie.Text == "IT SUPPORT" || cbFunctie.Text == "COSTUMER SUPPORT")
+            {
+                gbBedrijfswagen.Visible = false;
+                nudLoon.Value = Convert.ToDecimal(2050.00);
+                nudUren.Value = 32;
+            }          
             else 
             {
                 gbBedrijfswagen.Visible = false;
+                nudLoon.Value = Convert.ToDecimal(1900.00);
+                nudUren.Value = 25;
+            }
+        }
+
+        private void dtpDatumIntreding_ValueChanged(object sender, EventArgs e)
+        {
+            if (dtpDatumIntreding.Value.Year - dtpGeboorteDatum.Value.Year <= 18 && dtpDatumIntreding.Value.Month < dtpGeboorteDatum.Value.Month)
+            {
+                epText.SetError(dtpGeboorteDatum, "geboortedatum of datum van ndiensttreding  is foutief ingevult");
+                epText.SetError(dtpDatumIntreding, "geboortedatum of datum van ndiensttreding  is foutief ingevult");
+            }
+            else
+            {
+                epText.Clear();
             }
         }
     }

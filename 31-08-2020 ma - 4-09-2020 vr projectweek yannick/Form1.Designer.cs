@@ -93,6 +93,7 @@
             this.lbWerknemers.Name = "lbWerknemers";
             this.lbWerknemers.Size = new System.Drawing.Size(193, 364);
             this.lbWerknemers.TabIndex = 6;
+            this.lbWerknemers.SelectedIndexChanged += new System.EventHandler(this.lbWerknemers_SelectedIndexChanged);
             // 
             // lGeslacht
             // 

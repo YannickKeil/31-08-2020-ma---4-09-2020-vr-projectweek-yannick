@@ -52,16 +52,19 @@
             this.rbBedrijfswagenNee = new System.Windows.Forms.RadioButton();
             this.rbBedrijfswagenJa = new System.Windows.Forms.RadioButton();
             this.epText = new System.Windows.Forms.ErrorProvider(this.components);
+            this.nudLoon = new System.Windows.Forms.NumericUpDown();
+            this.label8 = new System.Windows.Forms.Label();
             this.gbGeslacht.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudUren)).BeginInit();
             this.gbBedrijfswagen.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.epText)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudLoon)).BeginInit();
             this.SuspendLayout();
             // 
             // mtbRijksregister
             // 
             this.mtbRijksregister.Location = new System.Drawing.Point(106, 434);
-            this.mtbRijksregister.Mask = "000000-00-00";
+            this.mtbRijksregister.Mask = "00.00.00-000.00";
             this.mtbRijksregister.Name = "mtbRijksregister";
             this.mtbRijksregister.Size = new System.Drawing.Size(114, 26);
             this.mtbRijksregister.TabIndex = 7;
@@ -90,6 +93,7 @@
             this.dtpDatumIntreding.Name = "dtpDatumIntreding";
             this.dtpDatumIntreding.Size = new System.Drawing.Size(200, 26);
             this.dtpDatumIntreding.TabIndex = 8;
+            this.dtpDatumIntreding.ValueChanged += new System.EventHandler(this.dtpDatumIntreding_ValueChanged);
             // 
             // tbNaam
             // 
@@ -223,7 +227,7 @@
             // 
             // nudUren
             // 
-            this.nudUren.Location = new System.Drawing.Point(281, 126);
+            this.nudUren.Location = new System.Drawing.Point(415, 135);
             this.nudUren.Maximum = new decimal(new int[] {
             38,
             0,
@@ -236,7 +240,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(277, 91);
+            this.label7.Location = new System.Drawing.Point(411, 100);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(89, 20);
             this.label7.TabIndex = 23;
@@ -281,11 +285,35 @@
             this.epText.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
             this.epText.ContainerControl = this;
             // 
+            // nudLoon
+            // 
+            this.nudLoon.DecimalPlaces = 2;
+            this.nudLoon.Location = new System.Drawing.Point(415, 374);
+            this.nudLoon.Maximum = new decimal(new int[] {
+            -1530494977,
+            232830,
+            0,
+            0});
+            this.nudLoon.Name = "nudLoon";
+            this.nudLoon.Size = new System.Drawing.Size(120, 26);
+            this.nudLoon.TabIndex = 24;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(411, 327);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(84, 20);
+            this.label8.TabIndex = 25;
+            this.label8.Text = "Start Loon";
+            // 
             // WerknemerInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(935, 920);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.nudLoon);
             this.Controls.Add(this.gbBedrijfswagen);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.nudUren);
@@ -314,6 +342,7 @@
             this.gbBedrijfswagen.ResumeLayout(false);
             this.gbBedrijfswagen.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.epText)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudLoon)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -344,5 +373,7 @@
         private System.Windows.Forms.RadioButton rbBedrijfswagenNee;
         private System.Windows.Forms.RadioButton rbBedrijfswagenJa;
         private System.Windows.Forms.ErrorProvider epText;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.NumericUpDown nudLoon;
     }
 }

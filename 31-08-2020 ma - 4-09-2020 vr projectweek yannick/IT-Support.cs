@@ -31,11 +31,11 @@ namespace _31_08_2020_ma___4_09_2020_vr_projectweek_yannick
             Loon = Loon + StartloonPercent();
             return Loon;
         }
-        public override double AncienniteitVerschil()
-        {
-            double ancienniteit = Ancienniteit() - StartloonPercent() - StartloonNaUren();
-            return ancienniteit;
-        }
+        //public override double AncienniteitVerschil()
+        //{
+        //    double ancienniteit = Ancienniteit() - StartloonPercent() - StartloonNaUren();
+        //    return ancienniteit;
+        //}
         public override double Extras()
         {
             return base.Extras() + 50;
