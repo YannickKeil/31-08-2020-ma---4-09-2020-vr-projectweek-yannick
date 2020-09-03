@@ -54,6 +54,7 @@
             this.epText = new System.Windows.Forms.ErrorProvider(this.components);
             this.nudLoon = new System.Windows.Forms.NumericUpDown();
             this.label8 = new System.Windows.Forms.Label();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.gbGeslacht.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudUren)).BeginInit();
             this.gbBedrijfswagen.SuspendLayout();
@@ -66,13 +67,13 @@
             this.mtbRijksregister.Location = new System.Drawing.Point(106, 434);
             this.mtbRijksregister.Mask = "00.00.00-000.00";
             this.mtbRijksregister.Name = "mtbRijksregister";
-            this.mtbRijksregister.Size = new System.Drawing.Size(114, 26);
+            this.mtbRijksregister.Size = new System.Drawing.Size(143, 26);
             this.mtbRijksregister.TabIndex = 7;
             this.mtbRijksregister.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.mtbRijksregister_MaskInputRejected);
             // 
             // mtbRekeningNummer
             // 
-            this.mtbRekeningNummer.Location = new System.Drawing.Point(106, 629);
+            this.mtbRekeningNummer.Location = new System.Drawing.Point(415, 434);
             this.mtbRekeningNummer.Mask = "BE00 0000 0000 0000";
             this.mtbRekeningNummer.Name = "mtbRekeningNummer";
             this.mtbRekeningNummer.Size = new System.Drawing.Size(186, 26);
@@ -81,17 +82,17 @@
             // 
             // dtpGeboorteDatum
             // 
-            this.dtpGeboorteDatum.Location = new System.Drawing.Point(106, 352);
+            this.dtpGeboorteDatum.Location = new System.Drawing.Point(43, 355);
             this.dtpGeboorteDatum.Name = "dtpGeboorteDatum";
-            this.dtpGeboorteDatum.Size = new System.Drawing.Size(200, 26);
+            this.dtpGeboorteDatum.Size = new System.Drawing.Size(300, 26);
             this.dtpGeboorteDatum.TabIndex = 6;
             this.dtpGeboorteDatum.ValueChanged += new System.EventHandler(this.dtpGeboorteDatum_ValueChanged);
             // 
             // dtpDatumIntreding
             // 
-            this.dtpDatumIntreding.Location = new System.Drawing.Point(106, 539);
+            this.dtpDatumIntreding.Location = new System.Drawing.Point(376, 355);
             this.dtpDatumIntreding.Name = "dtpDatumIntreding";
-            this.dtpDatumIntreding.Size = new System.Drawing.Size(200, 26);
+            this.dtpDatumIntreding.Size = new System.Drawing.Size(318, 26);
             this.dtpDatumIntreding.TabIndex = 8;
             this.dtpDatumIntreding.ValueChanged += new System.EventHandler(this.dtpDatumIntreding_ValueChanged);
             // 
@@ -115,7 +116,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(102, 318);
+            this.label3.Location = new System.Drawing.Point(103, 318);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(118, 20);
             this.label3.TabIndex = 13;
@@ -133,7 +134,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(102, 489);
+            this.label5.Location = new System.Drawing.Point(411, 318);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(191, 20);
             this.label5.TabIndex = 15;
@@ -142,7 +143,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(102, 589);
+            this.label6.Location = new System.Drawing.Point(411, 401);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(47, 20);
             this.label6.TabIndex = 16;
@@ -152,7 +153,7 @@
             // 
             this.gbGeslacht.Controls.Add(this.rbVrouw);
             this.gbGeslacht.Controls.Add(this.rbMan);
-            this.gbGeslacht.Location = new System.Drawing.Point(106, 177);
+            this.gbGeslacht.Location = new System.Drawing.Point(106, 180);
             this.gbGeslacht.Name = "gbGeslacht";
             this.gbGeslacht.Size = new System.Drawing.Size(200, 124);
             this.gbGeslacht.TabIndex = 4;
@@ -183,7 +184,7 @@
             // 
             // btnAddEdit
             // 
-            this.btnAddEdit.Location = new System.Drawing.Point(106, 697);
+            this.btnAddEdit.Location = new System.Drawing.Point(83, 515);
             this.btnAddEdit.Name = "btnAddEdit";
             this.btnAddEdit.Size = new System.Drawing.Size(186, 51);
             this.btnAddEdit.TabIndex = 12;
@@ -193,7 +194,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(107, 788);
+            this.btnCancel.Location = new System.Drawing.Point(408, 515);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(186, 51);
             this.btnCancel.TabIndex = 13;
@@ -227,7 +228,7 @@
             // 
             // nudUren
             // 
-            this.nudUren.Location = new System.Drawing.Point(415, 135);
+            this.nudUren.Location = new System.Drawing.Point(415, 49);
             this.nudUren.Maximum = new decimal(new int[] {
             38,
             0,
@@ -240,7 +241,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(411, 100);
+            this.label7.Location = new System.Drawing.Point(411, 14);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(89, 20);
             this.label7.TabIndex = 23;
@@ -250,7 +251,7 @@
             // 
             this.gbBedrijfswagen.Controls.Add(this.rbBedrijfswagenNee);
             this.gbBedrijfswagen.Controls.Add(this.rbBedrijfswagenJa);
-            this.gbBedrijfswagen.Location = new System.Drawing.Point(408, 177);
+            this.gbBedrijfswagen.Location = new System.Drawing.Point(415, 91);
             this.gbBedrijfswagen.Name = "gbBedrijfswagen";
             this.gbBedrijfswagen.Size = new System.Drawing.Size(200, 124);
             this.gbBedrijfswagen.TabIndex = 10;
@@ -288,7 +289,7 @@
             // nudLoon
             // 
             this.nudLoon.DecimalPlaces = 2;
-            this.nudLoon.Location = new System.Drawing.Point(415, 374);
+            this.nudLoon.Location = new System.Drawing.Point(408, 265);
             this.nudLoon.Maximum = new decimal(new int[] {
             -1530494977,
             232830,
@@ -301,7 +302,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(411, 327);
+            this.label8.Location = new System.Drawing.Point(411, 229);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(84, 20);
             this.label8.TabIndex = 25;
@@ -311,7 +312,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(935, 920);
+            this.ClientSize = new System.Drawing.Size(736, 637);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.nudLoon);
             this.Controls.Add(this.gbBedrijfswagen);
@@ -375,5 +376,6 @@
         private System.Windows.Forms.ErrorProvider epText;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.NumericUpDown nudLoon;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }

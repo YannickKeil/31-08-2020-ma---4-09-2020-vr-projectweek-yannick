@@ -16,6 +16,14 @@ namespace _31_08_2020_ma___4_09_2020_vr_projectweek_yannick
         {
             InitializeComponent();
         }
+        public Werknemers Selected { get; set; }
+        public WerknemerInfo(Werknemers selected)
+        {
+            Selected = selected;
+            InitializeComponent();
+        }
+        
+
         public string naam;
         public string functie;
         public bool geslacht;
@@ -26,6 +34,8 @@ namespace _31_08_2020_ma___4_09_2020_vr_projectweek_yannick
         public int uren;
         public bool bedrijfswagen;
         public double startLoon;
+        
+
         private void btnAddEdit_Click(object sender, EventArgs e)
         {
             if (tbNaam.Text == "")
@@ -82,7 +92,40 @@ namespace _31_08_2020_ma___4_09_2020_vr_projectweek_yannick
         }
         private void WerknemerInfo_Load(object sender, EventArgs e)
         {
-            cbFunctie.SelectedIndex = 0;
+                cbFunctie.SelectedIndex = 0;
+            if (Selected != null)
+            {
+                tbNaam.Text = Selected.Naam;
+                cbFunctie.Text = Selected.Functie;
+                if (Selected.Geslacht)
+                {
+                    rbMan.Checked = true;
+                    rbVrouw.Checked = false;
+                }
+                else
+                {
+                    rbMan.Checked = false;
+                    rbVrouw.Checked = true;
+                }
+                dtpGeboorteDatum.Value = Selected.GeboorteDatum;
+                mtbRijksregister.Text = Selected.Rijksregisternummer;
+                dtpDatumIntreding.Value = Selected.DatumIntreding;
+                mtbRekeningNummer.Text = Selected.Bankrekening;
+                nudUren.Value = Selected.Uren;
+                if (Selected.Bedrijfswagen)
+                {
+                    rbBedrijfswagenJa.Checked = true;
+                    rbBedrijfswagenNee.Checked = false;
+                }
+                else
+                {
+                    rbBedrijfswagenJa.Checked = false;
+                    rbBedrijfswagenNee.Checked = true;
+                }
+                nudLoon.Value = Convert.ToDecimal(Selected.Startloon);
+            }
+
+
         }
 
         private void tbNaam_TextChanged(object sender, EventArgs e)
@@ -145,18 +188,28 @@ namespace _31_08_2020_ma___4_09_2020_vr_projectweek_yannick
                 gbBedrijfswagen.Visible = true;
                 nudLoon.Value = Convert.ToDecimal(2200.00);
                 nudUren.Value = 38;
+                nudUren.Enabled = true;
             }
-            else if(cbFunctie.Text == "IT SUPPORT" || cbFunctie.Text == "COSTUMER SUPPORT")
+            else if(cbFunctie.Text == "IT SUPPORT")
+            {
+                gbBedrijfswagen.Visible = false;
+                nudLoon.Value = Convert.ToDecimal(2050.00);
+                nudUren.Value = 38;
+                nudUren.Enabled = false;
+            }
+            else if (cbFunctie.Text == "COSTUMER SUPPORT")
             {
                 gbBedrijfswagen.Visible = false;
                 nudLoon.Value = Convert.ToDecimal(2050.00);
                 nudUren.Value = 32;
-            }          
+                nudUren.Enabled = true;
+            }
             else 
             {
                 gbBedrijfswagen.Visible = false;
                 nudLoon.Value = Convert.ToDecimal(1900.00);
                 nudUren.Value = 25;
+                nudUren.Enabled = true;
             }
         }
 

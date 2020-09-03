@@ -28,30 +28,38 @@ namespace _31_08_2020_ma___4_09_2020_vr_projectweek_yannick
         }
         private void FolderMakenPlusLoonstrokenAfdrukkenPlusRecap()
         {
-            double totaal = 0;
-            string devider = "----------------------------------------------";
-            List<double> BedrijfskostenWerknemers = new List<double>();
-            string Folder = Environment.CurrentDirectory + $"\\LOONBRIEVEN {DateTime.Now.ToString("MMMM yyyy")}\\";
-            if (!Directory.Exists(Folder))
+            if (WerknemersBedrijf.Count > 0)
             {
-                Directory.CreateDirectory(Folder);
-            }
-            string bestandnaamRecap = $"RECAP {DateTime.Now.ToString("MM-yyyy")}.txt";
-            using (StreamWriter writer = new StreamWriter(Folder + bestandnaamRecap))
-            {
-                writer.WriteLine(devider);
-                writer.WriteLine($"RECAP {DateTime.Now.ToString("MMMM yyyy").ToUpper()}");
-                writer.WriteLine(devider);
-                writer.WriteLine("NAAM".PadRight(30, ' ') + "BEDRIJFSCOSTEN".PadLeft(15, ' '));
-                writer.WriteLine(devider);
-                foreach (var werknemer in WerknemersBedrijf)
+                double totaal = 0;
+                string devider = "----------------------------------------------";
+                List<double> BedrijfskostenWerknemers = new List<double>();
+                string Folder = Environment.CurrentDirectory + $"\\LOONBRIEVEN {DateTime.Now.ToString("MMMM yyyy")}\\";
+                if (!Directory.Exists(Folder))
                 {
-                    werknemer.Loonstroken(Folder, devider);
-                    totaal += werknemer.Recap();
-                    writer.WriteLine(werknemer.Naam.PadRight(30, ' ') +": + €"+ werknemer.CijferPrinterRechts(Math.Round(werknemer.Recap(),2)));
+                    Directory.CreateDirectory(Folder);
                 }
-                writer.WriteLine(devider);
-                writer.WriteLine("TOTAAL".PadRight(30, ' ') + ": €  " + WerknemersBedrijf[0].CijferPrinterRechts(Math.Round(totaal, 2)));
+                string bestandnaamRecap = $"RECAP {DateTime.Now.ToString("MM-yyyy")}.txt";
+                using (StreamWriter writer = new StreamWriter(Folder + bestandnaamRecap))
+                {
+                    writer.WriteLine(devider);
+                    writer.WriteLine($"RECAP {DateTime.Now.ToString("MMMM yyyy").ToUpper()}");
+                    writer.WriteLine(devider);
+                    writer.WriteLine("NAAM".PadRight(30, ' ') + "BEDRIJFSCOSTEN".PadLeft(15, ' '));
+                    writer.WriteLine(devider);
+                    foreach (var werknemer in WerknemersBedrijf)
+                    {
+                        werknemer.Loonstroken(Folder, devider);
+                        totaal += werknemer.Recap();
+                        writer.WriteLine(werknemer.Naam.PadRight(30, ' ') + ": + €" + werknemer.CijferPrinterRechts(Math.Round(werknemer.Recap(), 2)));
+                    }
+                    writer.WriteLine(devider);
+
+                    writer.WriteLine("TOTAAL".PadRight(30, ' ') + ": €  " + WerknemersBedrijf[0].CijferPrinterRechts(Math.Round(totaal, 2)));
+                }
+            }
+            else
+            {
+                MessageBox.Show("er is niets om af te drukken");
             }
         }
 
@@ -106,6 +114,44 @@ namespace _31_08_2020_ma___4_09_2020_vr_projectweek_yannick
 
         private void lbWerknemers_SelectedIndexChanged(object sender, EventArgs e)
         {
+            LaadWerknemers();
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            Werknemers selected = (Werknemers)lbWerknemers.SelectedItem;
+            WerknemerInfo werknemerinfo = new WerknemerInfo(selected);
+            if (werknemerinfo.ShowDialog() == DialogResult.OK)
+            {
+                WerknemersBedrijf.Remove(selected);
+                if (werknemerinfo.functie == "PROGRAMMEUR")
+                {
+                    Programmeur WerknermerToevoegen = new Programmeur(werknemerinfo.naam, werknemerinfo.geslacht, werknemerinfo.geboortedatum, werknemerinfo.rijksregisternummer, werknemerinfo.datumIntreding, werknemerinfo.rekeningnummer, werknemerinfo.uren, werknemerinfo.bedrijfswagen, startloon: werknemerinfo.startLoon);
+                    WerknemersBedrijf.Add(WerknermerToevoegen);
+                }
+                else if (werknemerinfo.functie == "IT SUPPORT")
+                {
+                    IT_Support WerknermerToevoegen = new IT_Support(werknemerinfo.naam, werknemerinfo.geslacht, werknemerinfo.geboortedatum, werknemerinfo.rijksregisternummer, werknemerinfo.datumIntreding, werknemerinfo.rekeningnummer, startloon: werknemerinfo.startLoon);
+                    WerknemersBedrijf.Add(WerknermerToevoegen);
+                }
+                else if (werknemerinfo.functie == "COSTUMER SUPPORT")
+                {
+                    Costumer_Support WerknermerToevoegen = new Costumer_Support(werknemerinfo.naam, werknemerinfo.geslacht, werknemerinfo.geboortedatum, werknemerinfo.rijksregisternummer, werknemerinfo.datumIntreding, werknemerinfo.rekeningnummer, werknemerinfo.uren, startloon: werknemerinfo.startLoon);
+                    WerknemersBedrijf.Add(WerknermerToevoegen);
+                }
+                else
+                {
+                    Werknemers WerknermerToevoegen = new Werknemers(werknemerinfo.naam, werknemerinfo.geslacht, werknemerinfo.geboortedatum, werknemerinfo.rijksregisternummer, werknemerinfo.datumIntreding, werknemerinfo.rekeningnummer, werknemerinfo.functie.ToUpper(), werknemerinfo.uren, startloon: werknemerinfo.startLoon);
+                    WerknemersBedrijf.Add(WerknermerToevoegen);
+                }
+            }
+            LaadWerknemers();
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            Werknemers selected = (Werknemers)lbWerknemers.SelectedItem;
+            WerknemersBedrijf.Remove(selected);
             LaadWerknemers();
         }
     }
