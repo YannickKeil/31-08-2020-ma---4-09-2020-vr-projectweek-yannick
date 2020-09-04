@@ -190,7 +190,7 @@ namespace _31_08_2020_ma___4_09_2020_vr_projectweek_yannick
                 nudUren.Value = 38;
                 nudUren.Enabled = true;
             }
-            else if(cbFunctie.Text == "IT SUPPORT")
+            else if (cbFunctie.Text == "IT SUPPORT")
             {
                 gbBedrijfswagen.Visible = false;
                 nudLoon.Value = Convert.ToDecimal(2050.00);
@@ -204,7 +204,7 @@ namespace _31_08_2020_ma___4_09_2020_vr_projectweek_yannick
                 nudUren.Value = 32;
                 nudUren.Enabled = true;
             }
-            else 
+            else
             {
                 gbBedrijfswagen.Visible = false;
                 nudLoon.Value = Convert.ToDecimal(1900.00);
@@ -212,6 +212,7 @@ namespace _31_08_2020_ma___4_09_2020_vr_projectweek_yannick
                 nudUren.Enabled = true;
             }
         }
+       
 
         private void dtpDatumIntreding_ValueChanged(object sender, EventArgs e)
         {
@@ -223,6 +224,38 @@ namespace _31_08_2020_ma___4_09_2020_vr_projectweek_yannick
             else
             {
                 epText.Clear();
+            }
+        }
+
+        private void cbFunctie_TextUpdate(object sender, EventArgs e)
+        {
+            if (cbFunctie.Text.ToUpper() == "PROGRAMMEUR")
+            {
+                gbBedrijfswagen.Visible = true;
+                nudLoon.Value = Convert.ToDecimal(2200.00);
+                nudUren.Value = 38;
+                nudUren.Enabled = true;
+            }
+            else if (cbFunctie.Text.ToUpper() == "IT SUPPORT")
+            {
+                gbBedrijfswagen.Visible = false;
+                nudLoon.Value = Convert.ToDecimal(2050.00);
+                nudUren.Value = 38;
+                nudUren.Enabled = false;
+            }
+            else if (cbFunctie.Text.ToUpper() == "COSTUMER SUPPORT")
+            {
+                gbBedrijfswagen.Visible = false;
+                nudLoon.Value = Convert.ToDecimal(2050.00);
+                nudUren.Value = 32;
+                nudUren.Enabled = true;
+            }
+            else
+            {
+                gbBedrijfswagen.Visible = false;
+                nudLoon.Value = Convert.ToDecimal(1900.00);
+                nudUren.Value = 25;
+                nudUren.Enabled = true;
             }
         }
     }

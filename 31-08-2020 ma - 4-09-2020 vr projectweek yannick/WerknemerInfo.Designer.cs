@@ -224,6 +224,7 @@
             this.cbFunctie.Size = new System.Drawing.Size(268, 28);
             this.cbFunctie.TabIndex = 1;
             this.cbFunctie.SelectedIndexChanged += new System.EventHandler(this.cbFunctie_SelectedIndexChanged);
+            this.cbFunctie.TextUpdate += new System.EventHandler(this.cbFunctie_TextUpdate);
             // 
             // label2
             // 
