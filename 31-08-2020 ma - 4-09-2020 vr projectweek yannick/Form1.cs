@@ -22,14 +22,13 @@ namespace _31_08_2020_ma___4_09_2020_vr_projectweek_yannick
         private void Form1_Load(object sender, EventArgs e)
         {
 
-            Programmeur newWerknemer = new Programmeur("PIETER JANSSENS", true, new DateTime(1991, 01, 12), "91,01,12-189,31", new DateTime(2018, 07, 18), "BE## #### #### ####", 38, true);
+            Programmeur newWerknemer = new Programmeur("PIETER JANSSENS", true, new DateTime(1991, 01, 12), "91,01,12-189,31", new DateTime(2018, 07, 18), "BE00 0000 0000 0000", 38, true);
             WerknemersBedrijf.Add(newWerknemer);
             LaadWerknemers();
         }
         private void FolderMakenPlusLoonstrokenAfdrukkenPlusRecap()
         {
-            if (WerknemersBedrijf.Count > 0)
-            {
+            
                 double totaal = 0;
                 string devider = "----------------------------------------------";
                 List<double> BedrijfskostenWerknemers = new List<double>();
@@ -56,35 +55,40 @@ namespace _31_08_2020_ma___4_09_2020_vr_projectweek_yannick
 
                     writer.WriteLine("TOTAAL".PadRight(30, ' ') + ": €  " + WerknemersBedrijf[0].CijferPrinterRechts(Math.Round(totaal, 2)));
                 }
+           
+        }
+        private void DeleteAllTxtFiles()
+        {
+            string Folder = Environment.CurrentDirectory + $"\\LOONBRIEVEN {DateTime.Now.ToString("MMMM yyyy")}\\";
+            if (!Directory.Exists(Folder))
+            {
+
+            }
+            else
+            {
+                string[] files = Directory.GetFiles(Folder);
+                
+                foreach (string file in files)
+                {
+                    if (file.Contains($"{ DateTime.Now: MM-yyyy}"))
+                    {
+                        File.Delete(file);
+                        Console.WriteLine($"{file} is deleted.");
+                    }
+                }
+            }
+        }
+        private void btnAfdrukken_Click(object sender, EventArgs e)
+        {
+            if (WerknemersBedrijf.Count > 0)
+            {
+                //DeleteAllTxtFiles(); /*dit is erin voor meerdere tests te kunnen doen zonder oude loonstrookjes manueel te moeten deleten*/
+                FolderMakenPlusLoonstrokenAfdrukkenPlusRecap();
             }
             else
             {
                 MessageBox.Show("er is niets om af te drukken");
             }
-        }
-        //private void DeleteAllTxtFiles()
-        //{
-        //    string Folder = Environment.CurrentDirectory + $"\\LOONBRIEVEN {DateTime.Now.ToString("MMMM yyyy")}\\";
-        //    if (!Directory.Exists(Folder))
-        //    {
-               
-        //    }
-        //    else 
-        //    {
-        //        string[] files = Directory.GetFiles(Folder);
-        //        foreach (string file in files)
-        //        {
-        //            File.Delete(file);
-        //            Console.WriteLine($"{file} is deleted.");
-        //        }
-        //    }
-        //}
-        private void btnAfdrukken_Click(object sender, EventArgs e)
-        {
-            //DeleteAllTxtFiles(); <- dit is erin om meerdere kere achtereen te testen zonder files te moeten gaan deleten.
-            //in normaal program is zou dit gevaarlijk zijn als er iets extra word in die folder gestoken zou dat ook deleted worden.
-            //module staat ook in comments
-            FolderMakenPlusLoonstrokenAfdrukkenPlusRecap();
         }
         public void LaadWerknemers()
         {
