@@ -45,41 +45,45 @@
             this.label5 = new System.Windows.Forms.Label();
             this.lFunctie = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.lUren = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // btnAfdrukken
             // 
-            this.btnAfdrukken.Location = new System.Drawing.Point(50, 441);
+            this.btnAfdrukken.Location = new System.Drawing.Point(265, 634);
             this.btnAfdrukken.Name = "btnAfdrukken";
             this.btnAfdrukken.Size = new System.Drawing.Size(143, 82);
-            this.btnAfdrukken.TabIndex = 1;
+            this.btnAfdrukken.TabIndex = 5;
             this.btnAfdrukken.Text = "Afdrukken";
             this.btnAfdrukken.UseVisualStyleBackColor = true;
             this.btnAfdrukken.Click += new System.EventHandler(this.btnAfdrukken_Click);
             // 
             // btnEdit
             // 
-            this.btnEdit.Location = new System.Drawing.Point(512, 231);
+            this.btnEdit.Location = new System.Drawing.Point(265, 510);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(143, 82);
-            this.btnEdit.TabIndex = 2;
+            this.btnEdit.TabIndex = 3;
             this.btnEdit.Text = "aanpassen";
             this.btnEdit.UseVisualStyleBackColor = true;
             this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(512, 38);
+            this.btnAdd.Location = new System.Drawing.Point(50, 510);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(143, 82);
-            this.btnAdd.TabIndex = 3;
+            this.btnAdd.TabIndex = 2;
             this.btnAdd.Text = "toevoegen";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(512, 441);
+            this.btnDelete.Location = new System.Drawing.Point(50, 634);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(143, 82);
             this.btnDelete.TabIndex = 4;
@@ -93,14 +97,14 @@
             this.lbWerknemers.ItemHeight = 20;
             this.lbWerknemers.Location = new System.Drawing.Point(50, 38);
             this.lbWerknemers.Name = "lbWerknemers";
-            this.lbWerknemers.Size = new System.Drawing.Size(193, 364);
-            this.lbWerknemers.TabIndex = 6;
+            this.lbWerknemers.Size = new System.Drawing.Size(358, 444);
+            this.lbWerknemers.TabIndex = 1;
             this.lbWerknemers.SelectedIndexChanged += new System.EventHandler(this.lbWerknemers_SelectedIndexChanged);
             // 
             // lGeslacht
             // 
             this.lGeslacht.AutoSize = true;
-            this.lGeslacht.Location = new System.Drawing.Point(288, 131);
+            this.lGeslacht.Location = new System.Drawing.Point(414, 192);
             this.lGeslacht.Name = "lGeslacht";
             this.lGeslacht.Size = new System.Drawing.Size(69, 20);
             this.lGeslacht.TabIndex = 8;
@@ -109,7 +113,7 @@
             // lRijksregisternummer
             // 
             this.lRijksregisternummer.AutoSize = true;
-            this.lRijksregisternummer.Location = new System.Drawing.Point(288, 262);
+            this.lRijksregisternummer.Location = new System.Drawing.Point(414, 323);
             this.lRijksregisternummer.Name = "lRijksregisternummer";
             this.lRijksregisternummer.Size = new System.Drawing.Size(147, 20);
             this.lRijksregisternummer.TabIndex = 9;
@@ -118,7 +122,7 @@
             // lDatumIntreding
             // 
             this.lDatumIntreding.AutoSize = true;
-            this.lDatumIntreding.Location = new System.Drawing.Point(288, 326);
+            this.lDatumIntreding.Location = new System.Drawing.Point(414, 387);
             this.lDatumIntreding.Name = "lDatumIntreding";
             this.lDatumIntreding.Size = new System.Drawing.Size(121, 20);
             this.lDatumIntreding.TabIndex = 10;
@@ -127,7 +131,7 @@
             // lGeboorteDatum
             // 
             this.lGeboorteDatum.AutoSize = true;
-            this.lGeboorteDatum.Location = new System.Drawing.Point(288, 195);
+            this.lGeboorteDatum.Location = new System.Drawing.Point(414, 256);
             this.lGeboorteDatum.Name = "lGeboorteDatum";
             this.lGeboorteDatum.Size = new System.Drawing.Size(129, 20);
             this.lGeboorteDatum.TabIndex = 11;
@@ -136,7 +140,7 @@
             // lRekeningNummer
             // 
             this.lRekeningNummer.AutoSize = true;
-            this.lRekeningNummer.Location = new System.Drawing.Point(288, 389);
+            this.lRekeningNummer.Location = new System.Drawing.Point(414, 450);
             this.lRekeningNummer.Name = "lRekeningNummer";
             this.lRekeningNummer.Size = new System.Drawing.Size(47, 20);
             this.lRekeningNummer.TabIndex = 12;
@@ -145,7 +149,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(288, 100);
+            this.label1.Location = new System.Drawing.Point(414, 161);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(69, 20);
             this.label1.TabIndex = 13;
@@ -154,7 +158,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(288, 162);
+            this.label2.Location = new System.Drawing.Point(414, 223);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(129, 20);
             this.label2.TabIndex = 14;
@@ -163,7 +167,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(288, 225);
+            this.label3.Location = new System.Drawing.Point(414, 286);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(147, 20);
             this.label3.TabIndex = 15;
@@ -172,7 +176,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(288, 295);
+            this.label4.Location = new System.Drawing.Point(414, 356);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(121, 20);
             this.label4.TabIndex = 16;
@@ -181,7 +185,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(288, 355);
+            this.label5.Location = new System.Drawing.Point(414, 416);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(47, 20);
             this.label5.TabIndex = 17;
@@ -190,7 +194,7 @@
             // lFunctie
             // 
             this.lFunctie.AutoSize = true;
-            this.lFunctie.Location = new System.Drawing.Point(288, 70);
+            this.lFunctie.Location = new System.Drawing.Point(414, 70);
             this.lFunctie.Name = "lFunctie";
             this.lFunctie.Size = new System.Drawing.Size(57, 20);
             this.lFunctie.TabIndex = 18;
@@ -199,17 +203,51 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(288, 38);
+            this.label7.Location = new System.Drawing.Point(414, 38);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(62, 20);
             this.label7.TabIndex = 19;
             this.label7.Text = "Functie";
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(414, 99);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(89, 20);
+            this.label6.TabIndex = 20;
+            this.label6.Text = "aantal uren";
+            // 
+            // lUren
+            // 
+            this.lUren.AutoSize = true;
+            this.lUren.Location = new System.Drawing.Point(414, 131);
+            this.lUren.Name = "lUren";
+            this.lUren.Size = new System.Drawing.Size(41, 20);
+            this.lUren.TabIndex = 21;
+            this.lUren.Text = "uren";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::_31_08_2020_ma___4_09_2020_vr_projectweek_yannick.Properties.Resources.harold;
+            this.pictureBox1.ImageLocation = "";
+            this.pictureBox1.InitialImage = global::_31_08_2020_ma___4_09_2020_vr_projectweek_yannick.Properties.Resources.harold;
+            this.pictureBox1.Location = new System.Drawing.Point(472, 484);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(299, 255);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 22;
+            this.pictureBox1.TabStop = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(738, 535);
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ClientSize = new System.Drawing.Size(848, 764);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.lUren);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.lFunctie);
             this.Controls.Add(this.label5);
@@ -227,10 +265,14 @@
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.btnAfdrukken);
+            this.DoubleBuffered = true;
+            this.MaximumSize = new System.Drawing.Size(870, 820);
+            this.MinimumSize = new System.Drawing.Size(870, 820);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -254,6 +296,9 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label lFunctie;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label lUren;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 

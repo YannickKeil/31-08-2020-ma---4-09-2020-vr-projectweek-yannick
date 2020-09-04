@@ -62,9 +62,28 @@ namespace _31_08_2020_ma___4_09_2020_vr_projectweek_yannick
                 MessageBox.Show("er is niets om af te drukken");
             }
         }
-
+        //private void DeleteAllTxtFiles()
+        //{
+        //    string Folder = Environment.CurrentDirectory + $"\\LOONBRIEVEN {DateTime.Now.ToString("MMMM yyyy")}\\";
+        //    if (!Directory.Exists(Folder))
+        //    {
+               
+        //    }
+        //    else 
+        //    {
+        //        string[] files = Directory.GetFiles(Folder);
+        //        foreach (string file in files)
+        //        {
+        //            File.Delete(file);
+        //            Console.WriteLine($"{file} is deleted.");
+        //        }
+        //    }
+        //}
         private void btnAfdrukken_Click(object sender, EventArgs e)
         {
+            //DeleteAllTxtFiles(); <- dit is erin om meerdere kere achtereen te testen zonder files te moeten gaan deleten.
+            //in normaal program is zou dit gevaarlijk zijn als er iets extra word in die folder gestoken zou dat ook deleted worden.
+            //module staat ook in comments
             FolderMakenPlusLoonstrokenAfdrukkenPlusRecap();
         }
         public void LaadWerknemers()
@@ -75,6 +94,7 @@ namespace _31_08_2020_ma___4_09_2020_vr_projectweek_yannick
             {
                 Werknemers selected = (Werknemers)lbWerknemers.SelectedItem;
                 lFunctie.Text = selected.Functie;
+                lUren.Text = $"{(selected.Uren == 38 ? "Voltijds" : "Deeltijds")} {Convert.ToString(selected.Uren)}/38 uren";
                 lGeslacht.Text = $"{(selected.Geslacht ? "MAN" : "VROUW")}";
                 lGeboorteDatum.Text = selected.GeboorteDatum.ToString("dd-MM-yyyy");
                 lRijksregisternummer.Text = selected.Rijksregisternummer;
